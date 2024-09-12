@@ -49,6 +49,9 @@ const CreateRepeatingTask: React.FC = () => {
     if (!Date.parse(startDate)) {
       showNotification("Invalid start date.");
       return false;
+    } else if (Date.parse(startDate) < Date.now()) {
+      showNotification("Start cannot be in the past.");
+      return false;
     }
 
     return true;
