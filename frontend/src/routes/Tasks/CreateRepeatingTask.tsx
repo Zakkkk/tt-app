@@ -1,6 +1,6 @@
 import Button from "../../components/Button.tsx";
 import { Link } from "react-router-dom";
-import Input from "../../components/Input.tsx";
+import { Input, Textarea } from "../../components/Input.tsx";
 import { useState } from "react";
 import { NotificationContainer, useNotification } from "../../components/Notification/Notification.tsx";
 
@@ -93,8 +93,8 @@ const CreateRepeatingTask: React.FC = () => {
         <form className={"flex flex-col gap-5"} onSubmit={handleSubmit}>
           <Input autoFocus={true} type="text" placeholder="Task Name" value={taskName} setValue={setTaskName}
                  isRequired={true} maxLength={100} />
-          <Input type="text" placeholder="Task Notes (Optional)" value={taskNotes} setValue={setTaskNotes}
-                 isRequired={false} maxLength={250} />
+          <Textarea type="text" placeholder="Task Notes (Optional)" value={taskNotes} setValue={setTaskNotes}
+                    isRequired={false} maxLength={250}></Textarea>
           <div>
 
             Repeat every <input type="number"
