@@ -6,6 +6,7 @@ import Tasks from "./routes/Tasks/Tasks.tsx";
 import Calendar from "./routes/Calendar/Calendar.tsx";
 import Profile from "./routes/Profile/Profile.tsx";
 import Log from "./routes/Log/Log.tsx";
+import CreateRepeatingTask from "./routes/Tasks/CreateRepeatingTask.tsx";
 
 const App: React.FC = () => {
   return (
@@ -14,9 +15,14 @@ const App: React.FC = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />}></Route>
+
           <Route path="/tasks" element={<Tasks />}></Route>
+          <Route path="/tasks/create" element={<CreateRepeatingTask />}></Route>
+
           <Route path="/calendar" element={<Calendar />}></Route>
+
           <Route path="/profile" element={<Profile />}></Route>
+
           <Route path="/log" element={<Log />}></Route>
         </Routes>
       </BrowserRouter>

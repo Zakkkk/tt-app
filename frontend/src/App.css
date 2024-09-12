@@ -5,3 +5,12 @@
 .material-symbols-outlined {
     user-select: none;
 }
+
+@layer base {
+    input[type='number']::-webkit-outer-spin-button,
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number'] {
+        -webkit-appearance: none;
+        -moz-appearance: textfield !important;
+    }
+}
