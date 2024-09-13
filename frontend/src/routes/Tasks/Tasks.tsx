@@ -13,7 +13,8 @@ const Tasks: React.FC = () => {
       <div className={"flex flex-col gap-5"}>
         <CardPreview link={"/tasks/create"} title={"Add"} description={"Create a new repeating task."}
                      icon={"library_add"} />
-        <CardPreview link={"/"} title={"Modify"} description={"Modify or delete an existing task."} icon={"build"} />
+        <CardPreview link={"/tasks/edit"} title={"Modify"} description={"Modify or delete an existing task."}
+                     icon={"build"} />
         <CardPreview link={"/tasks/pool"} title={"Pool"} description={"View the pool of existing tasks."}
                      icon={"lists"} />
       </div>
