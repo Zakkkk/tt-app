@@ -3,6 +3,7 @@ import Button from "../../components/Button.tsx";
 import Select from "../../components/Select.tsx";
 import Task from "../../types/Task.ts";
 import { useState } from "react";
+import { NotificationContainer, useNotification } from "../../components/Notification/Notification.tsx";
 
 const TaskPool: React.FC = () => {
   enum Sort {
@@ -11,11 +12,13 @@ const TaskPool: React.FC = () => {
     ALPHABETICAL = "alphabetical",
   }
 
+  const { showNotification, notifications } = useNotification();
+
   const [tasks, setTasks] = useState<Task[]>([
     {
       id: 1,
       title: "Task 1",
-      description: "Description 1",
+      description: "",
       starting_at: "2021-09-01T00:00:00Z",
       every: 1,
       unit: "day",
@@ -60,55 +63,67 @@ const TaskPool: React.FC = () => {
   };
 
   const removeTask = (id: number) => {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+    // Need to update the backend
 
-    // Then need to update the backend
+    showNotification("Task removed");
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+  };
+
+  const moveTaskToLog = (id: number) => {
+    // Need to update the backend
+
+    showNotification("Task moved to log");
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
   };
 
   return (
-    <div className={"p-5"}>
-      <Link to={"/tasks"}>
-        <Button>
-          <span className={"material-symbols-outlined text-white"}>arrow_back</span>
-          Back
-        </Button>
-      </Link>
-      <br /> <br />
-      <div className={"flex"}>
-        <h1 className={"text-white text-3xl font-bold"}>Task Pool</h1>
-        <Select
-          className={"ml-auto"}
-          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => sortTasks(e.target.value as Sort)}
-        >
-          {Object.values(Sort).map((sort) => (
-            <option key={sort} value={sort}>
-              {sort}
-            </option>
-          ))}
-        </Select>
-      </div>
-      <div className={"flex flex-col"}>
-        {tasks.map((task) => {
-          // const date = new Date(task.created_at);
-          // const dateString = `${date.getDate()}/${date.getMonth() + 1}`;
+    <>
+      <NotificationContainer notifications={notifications} />
+      <div className={"p-5"}>
+        <Link to={"/tasks"}>
+          <Button>
+            <span className={"material-symbols-outlined text-white"}>arrow_back</span>
+            Back
+          </Button>
+        </Link>
+        <br /> <br />
+        <div className={"flex"}>
+          <h1 className={"text-white text-3xl font-bold"}>Task Pool</h1>
+          <Select
+            className={"ml-auto"}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => sortTasks(e.target.value as Sort)}
+          >
+            {Object.values(Sort).map((sort) => (
+              <option key={sort} value={sort}>
+                {sort}
+              </option>
+            ))}
+          </Select>
+        </div>
+        <div className={"flex flex-col"}>
+          {tasks.map((task) => {
+            // const date = new Date(task.created_at);
+            // const dateString = `${date.getDate()}/${date.getMonth() + 1}`;
 
-          return (
-            <div key={task.id} className={"p-3 bg-gray-800 rounded-lg mt-4"}>
-              <div className={"flex"}>
-                <h2 className={"text-white text-xl font-bold"}>{task.title}</h2>
-                <span onClick={() => removeTask(task.id)}
-                      className={"material-symbols-outlined active:text-white transition text-3xl ml-auto"}>
+            return (
+              <div key={task.id} className={"p-3 bg-gray-800 rounded-lg mt-4"}>
+                <div className={"flex"}>
+                  <h2 className={"text-white text-xl font-bold"}>{task.title}</h2>
+                  <span onClick={() => removeTask(task.id)}
+                        className={"material-symbols-outlined active:text-white transition text-3xl ml-auto"}>
                   close
                 </span>
+                </div>
+                {/*<p className={""}>Generated {dateString}</p>*/}
+                <p>{task.description}</p>
+                <Button onClick={() => moveTaskToLog(task.id)} className={"mt-2"} size={"sm"}>Add to log</Button>
               </div>
-              {/*<p className={""}>Generated {dateString}</p>*/}
-              <p>{task.description}</p>
-            </div>
-          );
-        })}
-        <Button buttonRole={"primary"} className={"mt-4"}>Load more</Button>
+            );
+          })}
+          <Button className={"mt-4"}>Load more</Button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
