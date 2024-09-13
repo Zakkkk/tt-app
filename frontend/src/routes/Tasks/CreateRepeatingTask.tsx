@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Input, Textarea } from "../../components/Input.tsx";
 import { useState } from "react";
 import { NotificationContainer, useNotification } from "../../components/Notification/Notification.tsx";
+import Select from "../../components/Select.tsx";
 
 const CreateRepeatingTask: React.FC = () => {
   enum RepeatUnit {
@@ -105,13 +106,13 @@ const CreateRepeatingTask: React.FC = () => {
                                 onChange={(e) => setRepeatEvery(parseInt(e.target.value))}
                                 className={"p-2 bg-slate-800 text-white m-0 w-14 mx-4 rounded focus:outline outline-2 outline-white outline-offset-2 transition-all"}
                                 required min={0} />
-            <select
+            <Select
               className={"p-2 bg-slate-800 text-white h-10 rounded focus:outline outline-2 outline-white outline-offset-2 transition-all"}
               onChange={(e) => setRepeatUnit(e.target.value as RepeatUnit)}>
               {Object.values(RepeatUnit).map((unit) => (
                 <option key={unit}>{unit}</option>
               ))}
-            </select>
+            </Select>
           </div>
 
           <div>

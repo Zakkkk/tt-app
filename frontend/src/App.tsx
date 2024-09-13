@@ -7,6 +7,7 @@ import Calendar from "./routes/Calendar/Calendar.tsx";
 import Profile from "./routes/Profile/Profile.tsx";
 import Log from "./routes/Log/Log.tsx";
 import CreateRepeatingTask from "./routes/Tasks/CreateRepeatingTask.tsx";
+import TaskPool from "./routes/Tasks/TaskPool.tsx";
 
 const App: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const App: React.FC = () => {
 
           <Route path="/tasks" element={<Tasks />}></Route>
           <Route path="/tasks/create" element={<CreateRepeatingTask />}></Route>
+          <Route path="/tasks/pool" element={<TaskPool />}></Route>
 
           <Route path="/calendar" element={<Calendar />}></Route>
 
