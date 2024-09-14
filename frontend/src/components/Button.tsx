@@ -21,15 +21,25 @@ const Button: React.FC<ButtonProps> = ({
   type,
   showOutlineOnClick,
 }) => {
+  let backgroundColor = "";
+  if (buttonRole === "primary") {
+    backgroundColor = "bg-teal-600";
+  } else if (isPressed) {
+    backgroundColor = "bg-slate-600";
+  } else {
+    backgroundColor = "bg-slate-900";
+  }
+
   return (
     <button
       type={type}
       className={`
         ${className ? className : ""}
-        ${buttonRole === "primary" ? "bg-teal-600 border-none" : "bg-slate-900"}
+        ${buttonRole === "primary" ? "border-none" : ""}
         ${size === "sm" ? "text-sm px-2 p-1" : "text-base"}
         ${showOutlineOnClick != false ? "focus:outline-2 outline-white focus:outline outline-offset-2" : ""}
-        ${isPressed ? "bg-slate-600" : ""}
+        ${isPressed ? "" : ""}
+        ${backgroundColor}
         transition-all select-none
         border-2 rounded px-4 p-2 font-bold text-white inline-flex items-center justify-center
      `}

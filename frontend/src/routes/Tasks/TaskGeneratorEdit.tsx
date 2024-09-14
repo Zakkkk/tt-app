@@ -63,7 +63,7 @@ const TaskGeneratorEdit: React.FC = () => {
         <div className="flex">
           <h1 className={"text-3xl font-bold text-white"}>Repeating Tasks</h1>
           <Select
-            className={"ml-auto text-xs"}
+            className={"ml-auto "}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => sortTaskGenerators(e.target.value as Sort)}
           >
             {Object.values(Sort).map((sort) => (
@@ -72,6 +72,20 @@ const TaskGeneratorEdit: React.FC = () => {
               </option>
             ))}
           </Select>
+        </div>
+        <div>
+          {taskGenerators.map((taskGenerator) => (
+            <div key={taskGenerator.id} className={"bg-gray-800 p-5 rounded-lg mt-5"}>
+              <h2 className={"text-2xl font-bold text-white"}>{taskGenerator.title}</h2>
+              <p className={"text-white"}>{taskGenerator.description}</p>
+              <div className={"flex"}>
+                <Link to={`/tasks/${taskGenerator.id}`}>
+                  <Button>Edit</Button>
+                </Link>
+                <Button onClick={() => removeTaskGenerator(taskGenerator.id)}>Remove</Button>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </>
