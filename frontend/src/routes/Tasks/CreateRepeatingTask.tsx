@@ -98,7 +98,10 @@ const CreateRepeatingTask: React.FC = () => {
             Back
           </Button>
         </Link>
-        <br /> <br />
+
+        <br />
+        <br />
+
         <h1 className={"text-white text-3xl font-bold"}>Create a Repeating Task</h1>
         <p>Create a new repeating task.</p>
         <br />
@@ -250,6 +253,7 @@ const CreateRepeatingTask: React.FC = () => {
               onChange={(e) => setStartDate(e.target.value)}
             />
           </div>
+
           <Button onClick={handleSubmit} buttonRole={"primary"} className={"p-2 bg-slate-800 text-white"}>
             Create Task
           </Button>
