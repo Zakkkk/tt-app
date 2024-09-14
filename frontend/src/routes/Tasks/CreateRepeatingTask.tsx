@@ -4,13 +4,9 @@ import { Input, Textarea } from "../../components/Input.tsx";
 import { NotificationContainer, useNotification } from "../../components/Notification/Notification.tsx";
 import ButtonGroup from "../../components/ButtonGroup.tsx";
 import { useState } from "react";
+import { RepeatingMethod } from "../../types/Task.ts";
 
 const CreateRepeatingTask: React.FC = () => {
-  enum RepeatingMethod {
-    DayIntervals,
-    ChosenDays,
-  }
-
   const [taskName, setTaskName] = useState<string>("");
   const [taskNotes, setTaskNotes] = useState<string>("");
 

@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import Button from "../../components/Button.tsx";
 import Select from "../../components/Select.tsx";
-import Task from "../../types/Task.ts";
+import { Task } from "../../types/Task.ts";
+import mockTasks from "../../mockData/tasks.ts";
 import { useState } from "react";
 import { NotificationContainer, useNotification } from "../../components/Notification/Notification.tsx";
 
@@ -14,42 +15,21 @@ const TaskPool: React.FC = () => {
 
   const { showNotification, notifications } = useNotification();
 
-  const [tasks, setTasks] = useState<Task[]>([
-    {
-      id: 1,
-      title: "Task 1",
-      description: "",
-      starting_at: "2021-09-01T00:00:00Z",
-      every: 1,
-      unit: "day",
-      created_at: "2021-09-01T00:00:00Z",
-      updated_at: "2021-09-01T00:00:00Z",
-    },
-    {
-      id: 2,
-      title: "Task 2",
-      description: "Description 2",
-      starting_at: "2021-09-02T00:00:00Z",
-      every: 7,
-      unit: "day",
-      created_at: "2021-09-02T00:00:00Z",
-      updated_at: "2021-09-02T00:00:00Z",
-    },
-  ]);
+  const [tasks, setTasks] = useState<Task[]>(mockTasks);
 
   const sortTasks = (sort: Sort) => {
     switch (sort) {
       case Sort.MOST_RECENT:
         setTasks((prevTasks) =>
           [...prevTasks].sort((a, b) => {
-            return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+            return new Date(b.generated).getTime() - new Date(a.generated).getTime();
           }),
         );
         break;
       case Sort.LEAST_RECENT:
         setTasks((prevTasks) =>
           [...prevTasks].sort((a, b) => {
-            return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+            return new Date(a.generated).getTime() - new Date(b.generated).getTime();
           }),
         );
         break;
@@ -109,14 +89,18 @@ const TaskPool: React.FC = () => {
               <div key={task.id} className={"p-3 bg-gray-800 rounded-lg mt-4"}>
                 <div className={"flex"}>
                   <h2 className={"text-white text-xl font-bold"}>{task.title}</h2>
-                  <span onClick={() => removeTask(task.id)}
-                        className={"material-symbols-outlined active:text-white transition text-3xl ml-auto"}>
-                  close
-                </span>
+                  <span
+                    onClick={() => removeTask(task.id)}
+                    className={"material-symbols-outlined active:text-white transition text-3xl ml-auto"}
+                  >
+                    close
+                  </span>
                 </div>
                 {/*<p className={""}>Generated {dateString}</p>*/}
                 <p>{task.description}</p>
-                <Button onClick={() => moveTaskToLog(task.id)} className={"mt-2"} size={"sm"}>Add to log</Button>
+                <Button onClick={() => moveTaskToLog(task.id)} className={"mt-2"} size={"sm"}>
+                  Add to log
+                </Button>
               </div>
             );
           })}

@@ -1,14 +1,30 @@
+enum RepeatingMethod {
+  DayIntervals,
+  ChosenDays,
+}
+
 type Task = {
   id: number;
 
   title: string;
   description: string;
-  every: number;
-  unit: string;
-  starting_at: string;
 
-  created_at: string;
-  updated_at: string;
+  generated: string;
+  dayId: number;
+  completed: boolean;
 };
 
-export default Task;
+type TaskGenerator = {
+  id: number;
+
+  title: string;
+  description: string;
+  repeatingMethod: RepeatingMethod;
+  repeatEvery: number;
+  repeatDays: boolean[];
+
+  createdAt: string;
+};
+
+export type { Task, TaskGenerator };
+export { RepeatingMethod };
