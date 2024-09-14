@@ -6,7 +6,7 @@ import Tasks from "./routes/Tasks/Tasks.tsx";
 import Calendar from "./routes/Calendar/Calendar.tsx";
 import Profile from "./routes/Profile/Profile.tsx";
 import Log from "./routes/Log/Log.tsx";
-import CreateRepeatingTask from "./routes/Tasks/CreateRepeatingTask.tsx";
+import CreateTaskGenerator from "./routes/Tasks/CreateTaskGenerator.tsx";
 import TaskPool from "./routes/Tasks/TaskPool.tsx";
 import TaskGeneratorEdit from "./routes/Tasks/TaskGeneratorEdit.tsx";
 
@@ -19,7 +19,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />}></Route>
 
           <Route path="/tasks" element={<Tasks />}></Route>
-          <Route path="/tasks/create" element={<CreateRepeatingTask />}></Route>
+          <Route path="/tasks/create" element={<CreateTaskGenerator />}></Route>
           <Route path="/tasks/pool" element={<TaskPool />}></Route>
           <Route path="/tasks/edit" element={<TaskGeneratorEdit />}></Route>
 

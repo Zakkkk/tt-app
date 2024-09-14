@@ -5,8 +5,9 @@ import { NotificationContainer, useNotification } from "../../components/Notific
 import ButtonGroup from "../../components/ButtonGroup.tsx";
 import { useState } from "react";
 import { RepeatingMethod } from "../../types/Task.ts";
+import ColorOption from "../../components/ColorOption.tsx";
 
-const CreateRepeatingTask: React.FC = () => {
+const CreateTaskGenerator: React.FC = () => {
   const [taskName, setTaskName] = useState<string>("");
   const [taskNotes, setTaskNotes] = useState<string>("");
 
@@ -15,6 +16,7 @@ const CreateRepeatingTask: React.FC = () => {
   const [chosenRepeatingMethod, setChosenRepeatingMethod] = useState<RepeatingMethod>(RepeatingMethod.DayIntervals);
 
   const [startDate, setStartDate] = useState<string>("");
+  const [chosenColor, setChosenColor] = useState<number>(0);
 
   const { showNotification, notifications } = useNotification();
 
@@ -62,6 +64,11 @@ const CreateRepeatingTask: React.FC = () => {
       return false;
     }
 
+    if (chosenColor < 0 || chosenColor > 7) {
+      showNotification("There was a problem choosing that color.");
+      return false;
+    }
+
     return true;
   };
 
@@ -98,8 +105,7 @@ const CreateRepeatingTask: React.FC = () => {
         <br />
         <br />
 
-        <h1 className={"text-white text-3xl font-bold"}>Create a Repeating Task</h1>
-        <p>Create a new repeating task.</p>
+        <h1 className={"text-white text-3xl font-bold"}>Create a Task Generator</h1>
         <br />
         <form className={"flex flex-col gap-5"} onSubmit={handleSubmit}>
           <Input
@@ -119,7 +125,6 @@ const CreateRepeatingTask: React.FC = () => {
             isRequired={false}
             maxLength={250}
           ></Textarea>
-
           <ButtonGroup isFullWidth={true}>
             <Button
               onClick={() => setChosenRepeatingMethod(RepeatingMethod.DayIntervals)}
@@ -136,7 +141,6 @@ const CreateRepeatingTask: React.FC = () => {
               Chosen Days
             </Button>
           </ButtonGroup>
-
           {chosenRepeatingMethod === RepeatingMethod.DayIntervals ? (
             <div>
               Repeat every{" "}
@@ -153,7 +157,6 @@ const CreateRepeatingTask: React.FC = () => {
               days.
             </div>
           ) : null}
-
           {chosenRepeatingMethod === RepeatingMethod.ChosenDays ? (
             <div>
               <ButtonGroup isFullWidth={true} className="w-full">
@@ -237,7 +240,6 @@ const CreateRepeatingTask: React.FC = () => {
               </ButtonGroup>
             </div>
           ) : null}
-
           <div>
             Starting on{" "}
             <input
@@ -250,6 +252,22 @@ const CreateRepeatingTask: React.FC = () => {
             />
           </div>
 
+          {/*<hr />*/}
+
+          <div className="flex justify-between">
+            <ColorOption onClick={() => setChosenColor(0)} className={"bg-gray-400"} isSelected={chosenColor === 0} />
+            <ColorOption onClick={() => setChosenColor(1)} className={"bg-red-400"} isSelected={chosenColor === 1} />
+            <ColorOption onClick={() => setChosenColor(2)} className={"bg-orange-400"} isSelected={chosenColor === 2} />
+            <ColorOption onClick={() => setChosenColor(3)} className={"bg-amber-300"} isSelected={chosenColor === 3} />
+            <ColorOption
+              onClick={() => setChosenColor(4)}
+              className={"bg-emerald-400"}
+              isSelected={chosenColor === 4}
+            />
+            <ColorOption onClick={() => setChosenColor(5)} className={"bg-cyan-500"} isSelected={chosenColor === 5} />
+            <ColorOption onClick={() => setChosenColor(6)} className={"bg-purple-400"} isSelected={chosenColor === 6} />
+            <ColorOption onClick={() => setChosenColor(7)} className={"bg-pink-400"} isSelected={chosenColor === 7} />
+          </div>
           <Button onClick={handleSubmit} buttonRole={"primary"} className={"p-2 bg-slate-800 text-white"}>
             Create Task
           </Button>
@@ -259,4 +277,4 @@ const CreateRepeatingTask: React.FC = () => {
   );
 };
 
-export default CreateRepeatingTask;
+export default CreateTaskGenerator;
