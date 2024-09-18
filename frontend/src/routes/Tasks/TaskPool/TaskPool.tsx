@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import Button from "../../components/Button.tsx";
-import Select from "../../components/Select.tsx";
-import { Task } from "../../types/Task.ts";
-import mockTasks from "../../mockData/tasks.ts";
-import { useState } from "react";
-import { NotificationContainer, useNotification } from "../../components/Notification/Notification.tsx";
+import Button from "../../../components/Button.tsx";
+import Select from "../../../components/Select.tsx";
+import { Task } from "../../../types/Task.ts";
+import mockTasks from "../../../mockData/tasks.ts";
+import { useEffect, useState } from "react";
+import { NotificationContainer, useNotification } from "../../../components/Notification/Notification.tsx";
 
 const TaskPool: React.FC = () => {
   enum Sort {
@@ -55,6 +55,10 @@ const TaskPool: React.FC = () => {
     showNotification("Task moved to log");
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
   };
+
+  useEffect(() => {
+    sortTasks(Sort.MOST_RECENT);
+  }, []);
 
   return (
     <>

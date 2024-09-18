@@ -12,18 +12,20 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({
-  children,
-  className,
-  buttonRole,
-  onClick,
-  size,
-  isPressed,
-  type,
-  showOutlineOnClick,
-}) => {
+                                         children,
+                                         className,
+                                         buttonRole,
+                                         onClick,
+                                         size,
+                                         isPressed,
+                                         type,
+                                         showOutlineOnClick,
+                                       }) => {
   let backgroundColor = "";
   if (buttonRole === "primary") {
     backgroundColor = "bg-teal-600";
+  } else if (buttonRole === "danger") {
+    backgroundColor = "bg-red-600";
   } else if (isPressed) {
     backgroundColor = "bg-slate-600";
   } else {
@@ -35,8 +37,9 @@ const Button: React.FC<ButtonProps> = ({
       type={type}
       className={`
         ${className ? className : ""}
-        ${buttonRole === "primary" ? "border-none" : ""}
+        ${buttonRole === "primary" || buttonRole === "danger" ? "border-none" : ""}
         ${size === "sm" ? "text-sm px-2 p-1" : "text-base"}
+        ${size === "xs" ? "text-sm px-1.5 p-0.5" : "text-base"}
         ${showOutlineOnClick != false ? "focus:outline-2 outline-white focus:outline outline-offset-2" : ""}
         ${isPressed ? "" : ""}
         ${backgroundColor}

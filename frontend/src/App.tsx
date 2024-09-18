@@ -6,13 +6,13 @@ import Tasks from "./routes/Tasks/Tasks.tsx";
 import Calendar from "./routes/Calendar/Calendar.tsx";
 import Profile from "./routes/Profile/Profile.tsx";
 import Log from "./routes/Log/Log.tsx";
-import CreateTaskGenerator from "./routes/Tasks/CreateTaskGenerator.tsx";
-import TaskPool from "./routes/Tasks/TaskPool.tsx";
-import TaskGeneratorEdit from "./routes/Tasks/TaskGeneratorEdit.tsx";
+import CreateTaskGenerator from "./routes/Tasks/TaskGeneratorCreate/TaskGeneratorCreate.tsx";
+import TaskPool from "./routes/Tasks/TaskPool/TaskPool.tsx";
+import TaskGeneratorEdit from "./routes/Tasks/TaskGeneratorEdit/TaskGeneratorEdit.tsx";
 
 const App: React.FC = () => {
   return (
-    <div className={"sm:select-none-doesnt-work h-screen prose-invert text-slate-400 bg-slate-900"}>
+    <div className={"sm:select-none-doesnt-work min-h-screen pb-28 prose-invert text-slate-400 bg-slate-900"}>
       <BrowserRouter>
         <Navbar />
         <Routes>

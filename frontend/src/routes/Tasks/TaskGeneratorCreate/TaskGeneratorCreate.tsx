@@ -1,13 +1,13 @@
-import Button from "../../components/Button.tsx";
+import Button from "../../../components/Button.tsx";
 import { Link } from "react-router-dom";
-import { Input, Textarea } from "../../components/Input.tsx";
-import { NotificationContainer, useNotification } from "../../components/Notification/Notification.tsx";
-import ButtonGroup from "../../components/ButtonGroup.tsx";
+import { Input, Textarea } from "../../../components/Input.tsx";
+import { NotificationContainer, useNotification } from "../../../components/Notification/Notification.tsx";
+import ButtonGroup from "../../../components/ButtonGroup.tsx";
 import { useState } from "react";
-import { RepeatingMethod } from "../../types/Task.ts";
-import ColorOption from "../../components/ColorOption.tsx";
+import { RepeatingMethod } from "../../../types/Task.ts";
+import ColorOption from "../../../components/ColorOption.tsx";
 
-const CreateTaskGenerator: React.FC = () => {
+const TaskGeneratorCreate: React.FC = () => {
   const [taskName, setTaskName] = useState<string>("");
   const [taskNotes, setTaskNotes] = useState<string>("");
 
@@ -277,4 +277,4 @@ const CreateTaskGenerator: React.FC = () => {
   );
 };
 
-export default CreateTaskGenerator;
+export default TaskGeneratorCreate;

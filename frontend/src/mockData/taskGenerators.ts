@@ -1,4 +1,4 @@
-import { TaskGenerator, RepeatingMethod } from "../types/Task";
+import { RepeatingMethod, TaskGenerator } from "../types/Task";
 
 // mock data
 const taskGenerators: TaskGenerator[] = [
@@ -9,7 +9,8 @@ const taskGenerators: TaskGenerator[] = [
     repeatingMethod: RepeatingMethod.DayIntervals,
     repeatEvery: 1,
     repeatDays: [false, false, false, false, false, false, false],
-    createdAt: "2021-01-01T00:00:00.000Z",
+    createdAt: "2021-02-01T00:00:00.000Z",
+    streak: 0,
   },
   {
     id: 2,
@@ -18,7 +19,8 @@ const taskGenerators: TaskGenerator[] = [
     repeatingMethod: RepeatingMethod.DayIntervals,
     repeatEvery: 7,
     repeatDays: [false, false, false, false, false, false, false],
-    createdAt: "2021-01-01T00:00:00.000Z",
+    createdAt: "2021-03-01T00:00:00.000Z",
+    streak: 3,
   },
   {
     id: 3,
@@ -27,7 +29,8 @@ const taskGenerators: TaskGenerator[] = [
     repeatingMethod: RepeatingMethod.DayIntervals,
     repeatEvery: 5,
     repeatDays: [false, false, false, false, false, false, false],
-    createdAt: "2021-01-01T00:00:00.000Z",
+    createdAt: "2021-04-01T00:00:00.000Z",
+    streak: 2,
   },
   {
     id: 4,
@@ -36,7 +39,8 @@ const taskGenerators: TaskGenerator[] = [
     repeatingMethod: RepeatingMethod.ChosenDays,
     repeatEvery: 0,
     repeatDays: [false, true, false, true, false, true, false],
-    createdAt: "2021-01-01T00:00:00.000Z",
+    createdAt: "2021-05-01T00:00:00.000Z",
+    streak: 3,
   },
 ];
 

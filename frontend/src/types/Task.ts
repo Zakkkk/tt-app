@@ -24,6 +24,7 @@ type TaskGenerator = {
   repeatDays: boolean[];
 
   createdAt: string;
+  streak: number
 };
 
 export type { Task, TaskGenerator };
